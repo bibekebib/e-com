@@ -1,0 +1,21 @@
+{% extends "store/main.html" %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Store</title>
+  </head>
+  <body>
+    {% block content %}
+
+    <div style="margin: 100px 0 0 0;">
+      {% for product in products %}
+      <h4>{{product.name}}</h4>
+      <h3>{{product.price | floatformat:2}}</h3>
+      <img src="{{product.imageURL}}" alt="{{product.name}}" />
+      {% endfor %}
+    </div>
+    {% endblock content %}
+  </body>
+</html>

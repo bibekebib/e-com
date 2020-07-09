@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+            <!-- Font Awesome Import Start -->
+            <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" rel="stylesheet"/>
+            <!-- Font Awesome Import End -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'css/main.css' %}">
+   <title></title>
+</head>
+<body>
+    <div class="navbar-container">
+        <div class="navbar-logo">
+            <a href="{%url "store"%}"><img src="{%static 'images/Logo.jpg' %}" width="100px" height="50px"
+            alt=""></a>
+        </div>
+        <div class="further-pages-links">
+            <div class="profile-login">Login</div>
+            <div class="cart-num">
+                <a href="{%url 'cart' %}" class="cart-page bag-btn" title="Cart"> 
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <div class="num-items"><h3>0</h3></div>
+            </div>
+        </div>
+    </div>
+    {% block content %}{% endblock content %}
+</body>
+</html>

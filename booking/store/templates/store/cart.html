@@ -1,0 +1,18 @@
+{% extends 'store/main.html' %} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Cart | MarginTop Solutions</title>
+  </head>
+  <body>
+    {% block content %} {% for item in items %}
+    <img src="{{item.product.imageURL}}" alt="item.product.name" />
+    <p>{{item.product.name}}</p>
+    <p>{{item.product.price|floatformat:2}}</p>
+    <p>{{item.quantity}}</p>
+    <hr />
+    {% endfor %} {% endblock content %}
+  </body>
+</html>
