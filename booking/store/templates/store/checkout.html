@@ -10,8 +10,32 @@
     <body>
 
         {% block content %}
-            <h3 style="top:90px; color:rebeccapurple;">Hello checkout page</h3>
-        {% endblock content %}
+       
+          
+        
+            <div style="margin-top:90px; color:rebeccapurple;">
+            </h4>
+            <h3>
+                <p>items:
+                    {{order.get_cart_items}}
+                </p>
+                <p>price:
+                    {{order.get_cart_total|floatformat:2}}
+                </p>
+            </h3>
+                {% for item in items %}
+                <h4>
+<img src="{{item.product.imageURL }}" alt="">
+                    <p>{{item.product.name}}</p>
+                    <p>{{item.product.price}}</p>
+                    <p>{{item.quantity}}</p>
 
+
+                <hr>
+                {% endfor %}
+
+            </div>
+            {% endblock content %}
+        </body>
     </body>
 </html>
