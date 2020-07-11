@@ -1,21 +1,63 @@
-{% extends "store/main.html" %} {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Store</title>
-  </head>
-  <body>
-    {% block content %}
+{% extends "store/main.html" %}
+{% load static %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8"/>
+            <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+            <link rel="stylesheet" href="{% static 'css/store.css' %}">
+            <title>Store</title>
+        </head>
+        <body>
 
-    <div style="margin: 100px 0 0 0;">
-      {% for product in products %}
-      <h4>{{product.name}}</h4>
-      <h3>{{product.price | floatformat:2}}</h3>
-      <img src="{{product.imageURL}}" alt="{{product.name}}" />
-      {% endfor %}
-    </div>
-    {% endblock content %}
-  </body>
+
+            <div style="margin: 100px 0 0 0;"></div>
+            <!-- Start of bannering work -->
+            <header class="hero">
+                <div class="banner">
+                    <h1 class="banner-title">Clothes Collection</h1>
+                    <button class="banner-btn">Shop Now</button>
+                </div>
+            </header>
+            <!-- End of Bannering -->
+                                                                            <!-- Start of Products -->
+            <section class="products">
+                <div class="section-title">
+                    <h2>Our Products</h2>
+                </div>
+
+                <div class="products-center">
+                    <!-- Product No.1  -->
+
+                    {% for product  in products  %}
+
+                        <article class="product">
+                            <div class="img-container">
+                                <img src="{{product.imageURL}}" alt="{{product.name}}" / height="270px" width="270px">
+                                <div class="buttons">
+                                    <button class="bag-btn" data-id="1">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        Add to Cart
+                                    </button>
+                                    <button class="bag-btn view" data-id="1">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        view-more
+                                    </button>
+                                </div>
+                            </div>
+                            <h3>{{product.name}}</h3>
+                            <h4>{{product.price|floatformat:2}}</h4>
+                        </article>
+                    {% endfor %}
+
+                </div>
+                <a class="banner-btn" href="#">
+                    Browse all items</a>
+            </section>
+            <!-- End of Products -->
+
+        {% endblock content %}
+
+    </body>
 </html>

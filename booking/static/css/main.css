@@ -14,7 +14,7 @@
 }
 body {
   overflow-x: hidden;
-  display: inline-block;
+  /* display: inline-block; */
 }
 .navbar-container {
   display: flex;
@@ -60,7 +60,7 @@ body {
 }
 
 /* button starts */
-.bag-btn {
+.bag-btn-nav {
   background: var(--PrimaryColor);
   border-radius: 5px;
   border: none;
@@ -72,7 +72,7 @@ body {
   letter-spacing: var(--mainLetterSpacing);
   cursor: pointer;
 }
-.bag-btn:hover {
+.bag-btn-nav:hover {
   transform: scale(1.11);
   color: var(--PrimaryWhite);
 }
