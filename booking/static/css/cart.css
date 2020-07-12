@@ -1,0 +1,83 @@
+/* Main fonting works Starts */
+
+:root {
+  --primaryColor: #f09d51;
+  --mainWhite: #fff;
+  --mainBlack: #222;
+  --mainGray: #ececec;
+  --mainSpacing: 0.1rem;
+  --mainTransition: all 0.3s linear;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  text-transform: var(--mainSpacing);
+  color: var(--mainBlack);
+  background: var(--mainWhite);
+}
+/* Main Fonting works Ends */
+.cart-container {
+  margin-top: 90px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.cart-container .cart-container-upper-part,
+.cart-container-lower-part {
+  margin: 20px;
+  min-height: 100px;
+  width: calc(100% - 40px);
+  border-radius: 10px;
+  border: 1px solid wheat;
+  box-shadow: 2px 2px rgba(127, 255, 212, 0.39);
+}
+.cart-container .cart-container-upper-part .back-link {
+  margin: 1rem;
+}
+
+.cart-container
+  .cart-container-upper-part
+  .cart-container-upper-part-down
+  span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem;
+}
+.cart-container .cart-container-lower-part .cart-table-part {
+  width: 100%;
+}
+.cart-container .cart-container-lower-part .cart-table-part table {
+  width: 100%;
+  transition: var(--mainTranisition);
+}
+.cart-container .cart-container-lower-part .cart-table-part table tr {
+  transition: var(--mainTranisition);
+}
+.cart-container .cart-container-lower-part .cart-table-part table tr th,
+.cart-container .cart-container-lower-part .cart-table-part table tr td {
+  flex: 1;
+  text-align: center;
+  height: 40px;
+  background: whitesmoke;
+  border-radius: 10px;
+  transition: var(--mainTranisition);
+}
+.cart-container .cart-container-lower-part .cart-table-part table tr td img {
+  width: 100px;
+  height: 60px;
+}
+.cart-container
+  .cart-container-lower-part
+  .cart-table-part
+  table
+  tr
+  .quantity
+  i {
+  cursor: pointer;
+}

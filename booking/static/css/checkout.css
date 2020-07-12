@@ -1,0 +1,103 @@
+/* Main fonting works Starts */
+
+:root {
+  --primaryColor: #f09d51;
+  --mainWhite: #fff;
+  --mainBlack: #222;
+  --mainGray: #ececec;
+  --mainSpacing: 0.1rem;
+  --mainTransition: all 0.3s linear;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  text-transform: var(--mainSpacing);
+  color: var(--mainBlack);
+  background: var(--mainWhite);
+}
+/* Main Fonting works Ends */
+.checkout-container {
+  margin-top: 90px;
+  display: flex;
+  width: 100%;
+}
+.checkout-container .checkout-shipping-address,
+.checkout-container .checkout-items-summery {
+  margin: 20px;
+  text-align: center;
+  min-height: 200px;
+  width: calc(100% / 2 - 60px);
+  border-radius: 10px;
+  border: 1px solid wheat;
+  box-shadow: 2px 2px rgba(127, 255, 212, 0.39);
+}
+.checkout-container .checkout-shipping-address h3,
+.checkout-container .checkout-items-summery h2 {
+  margin: 1rem 0;
+}
+.checkout-container .checkout-shipping-address .guest-input-section {
+  margin: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.checkout-container .checkout-shipping-address .guest-input-section input {
+  margin: 1rem;
+  width: calc(100% / 2 - 2rem);
+}
+.checkout-container .checkout-shipping-address .authorized-shipping-address {
+  display: flex;
+  flex-wrap: wrap;
+}
+.checkout-container
+  .checkout-shipping-address
+  .authorized-shipping-address
+  input {
+  margin: 1rem;
+  width: calc(100% / 2 - 2rem);
+}
+.checkout-container
+  .checkout-shipping-address
+  .authorized-shipping-address
+  button {
+  margin: 1rem;
+  width: calc(100% - 2rem);
+}
+.checkout-container .back-link {
+  margin: 1rem;
+  text-align: initial;
+}
+.checkout-container .checkout-items-summery .items-summery table {
+  width: 100%;
+  transition: var(--mainTranisition);
+}
+.checkout-container .checkout-items-summery .items-summery table tr {
+  transition: var(--mainTranisition);
+}
+.checkout-container .checkout-items-summery.items-summery table tr td {
+  flex: 1;
+  text-align: center;
+  height: 40px;
+  background: whitesmoke;
+  border-radius: 10px;
+  transition: var(--mainTranisition);
+}
+.checkout-container .checkout-items-summery table tr td img {
+  width: 100px;
+  height: 60px;
+}
+text-transform: var(--mainSpacing);
+
+@media only screen and (max-width: 940px) {
+  .checkout-container {
+    flex-direction: column;
+  }
+  .checkout-container .checkout-shipping-address,
+  .checkout-container .checkout-items-summery {
+    width: calc(100% - 40px);
+  }
+}

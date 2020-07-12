@@ -1,41 +1,68 @@
 {% extends 'store/main.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-        <title>checkout | MarginTop Solutions</title>
-    </head>
-    <body>
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8"/>
+            <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+            <link rel="stylesheet" href="{% static 'css/store.css' %}">
+            <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+            <title>checkout | MarginTop Solutions</title>
+        </head>
+        <body>
 
-        {% block content %}
-       
-          
-        
-            <div style="margin-top:90px; color:rebeccapurple;">
-            </h4>
-            <h3>
-                <p>items:
-                    {{order.get_cart_items}}
-                </p>
-                <p>price:
-                    {{order.get_cart_total|floatformat:2}}
-                </p>
-            </h3>
-                {% for item in items %}
-                <h4>
-<img src="{{item.product.imageURL }}" alt="">
-                    <p>{{item.product.name}}</p>
-                    <p>{{item.product.price}}</p>
-                    <p>{{item.quantity}}</p>
+            <div class="checkout-container" style="margin-top:100px">
+                <div class="checkout-shipping-address">
+                    <div class="guest-input-section">
+                        <input id="" name="" placeholder="Name" type="text">
+                        <input id="" name="" placeholder="Email" type="text">
+                    </div>
+                    <hr>
+                    <h3>Shipping Address</h3>
+                    <hr>
+                    <div class="authorized-shipping-address">
+                        <input id="" name="" placeholder="Address" type="text">
+                        <input id="" name="" placeholder="City" type="text">
+                        <input id="" name="" placeholder="State" type="text">
+                        <input id="" name="" placeholder="Zip Code" type="text">
+                        <button class="banner-btn" type="submit">Continue</button>
+                    </div>
+                </div>
+                <div class="checkout-items-summery">
+                    <div class="back-link">
 
+                        <a href="{%url 'cart' %}">
+                            <button class="banner-btn">
+                                <i class="fas fa-arrow-left"></i>
+                                Back To Cart</button>
+                        </a>
 
-                <hr>
-                {% endfor %}
-
+                    </div>
+                    <hr>
+                    <h2>Order Summery</h2>
+                    <hr>
+                    <div class="items-summery">
+                        <table>
+                            {% for item in items %}
+                                <tr>
+                                    <td><img src="{{item.product.imageURL}}" alt="item.product.name"/></td>
+                                    <td>{{item.product.name}}</td>
+                                    <td>{{item.product.price|floatformat:2}}</td>
+                                    <td>{{item.quantity}}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <hr>
+                    <span style="display: flex; align-items:center; justify-content:space-evenly; margin: 1rem 0;">
+                        <p>items:<strong>{{order.get_cart_items}}</strong>
+                        </p>
+                        <p>Total:<strong>{{order.get_cart_total|floatformat:2}}</strong>
+                        </p>
+                    </span>
+                </div>
             </div>
-            {% endblock content %}
-        </body>
+        {% endblock content %}
     </body>
 </html>

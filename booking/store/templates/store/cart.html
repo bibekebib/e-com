@@ -1,34 +1,70 @@
 {% extends 'store/main.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8"/>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-        <title>Cart | MarginTop Solutions</title>
-    </head>
-    <body>
-        {% block content %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8"/>
+            <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
-            <!-- {% if error_message %}
-                <p>{{error_message}}</p>
-            {% endif %} -->
-                                                <!-- {% csrf_token %} -->
-            <p style="margin-top: 100px;">items:
-                <strong>{{order.get_cart_items}}</strong>
-            </p>
-            <p>items:
-                <strong>{{order.get_cart_total|floatformat:2}}</strong>
-            </p>
-            {% for item in items %}
-                <img src="{{item.product.imageURL}}" alt="item.product.name"/>
-                <p>{{item.product.name}}</p>
-                <p>{{item.product.price|floatformat:2}}</p>
-                <p>{{item.quantity}}</p>
-                <p>{{item.get_total|floatformat:2}}</p>
-                <hr/>
+            <link rel="stylesheet" href="{% static 'css/store.css' %}">
+            <link rel="stylesheet" href="{% static 'css/cart.css' %}">
 
-            {% endfor %}
+            <title>Cart | MarginTop Solutions</title>
+        </head>
+        <body>
+            <div class="cart-container">
+                <div class="cart-container-upper-part">
+                    <div class="back-link">
+
+                        <a href="{%url 'store' %}">
+                            <button class="banner-btn">
+                                <i class="fas fa-arrow-left"></i>
+                                Continue Shopping</button>
+                        </a>
+
+                    </div>
+                    <div class="cart-container-upper-part-down">
+                        <span>
+                            <p>items:<strong>{{order.get_cart_items}}</strong>
+                            </p>
+                            <p>Total:<strong>{{order.get_cart_total|floatformat:2}}</strong>
+                            </p>
+
+                            <a href="{%url 'checkout' %}">
+                                <button class="banner-btn">Checkout</button>
+                            </a>
+
+                        </span>
+                    </div>
+                </div>
+                <div class="cart-container-lower-part">
+                    <div class="cart-table-part">
+                        <table>
+                            <tr>
+                                <th>Product</th>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                            {% for item in items %}
+                                <tr>
+                                    <td><img src="{{item.product.imageURL}}" alt="item.product.name"/></td>
+                                    <td>{{item.product.name}}</td>
+                                    <td>{{item.product.price|floatformat:2}}</td>
+                                    <td class="quantity">
+                                        <i class="fas fa-minus"></i>
+                                        {{item.quantity}}
+                                        <i class="fas fa-plus"></i>
+                                    </td>
+                                    <td>{{item.get_total|floatformat:2}}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
         {% endblock content %}
     </body>
 </html>
