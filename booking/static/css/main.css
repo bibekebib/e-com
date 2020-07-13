@@ -38,6 +38,7 @@ body {
 }
 .navbar-container .further-pages-links {
   position: relative;
+  margin: 0 10px 0 0;
   display: flex;
   align-items: center;
 }
@@ -48,10 +49,10 @@ body {
 }
 .navbar-container .further-pages-links .cart-num .num-items {
   position: absolute;
-  right: 0;
+  right: -5px;
   top: -100%;
   background: var(--PrimaryColor);
-  padding: 2px;
+  /* padding: 2px; */
   border-radius: 40%;
 }
 .navbar-container .further-pages-links .cart-num .num-items:hover {

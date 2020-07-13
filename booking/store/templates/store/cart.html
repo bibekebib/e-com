@@ -54,9 +54,9 @@
                                     <td>{{item.product.name}}</td>
                                     <td>{{item.product.price|floatformat:2}}</td>
                                     <td class="quantity">
-                                        <i class="fas fa-minus"></i>
+                                        <i class="fas fa-minus update-cart" data-product={{item.product.id}} data-action="remove"></i>
                                         {{item.quantity}}
-                                        <i class="fas fa-plus"></i>
+                                        <i class="fas fa-plus update-cart" data-product={{item.product.id}} data-action="add"></i>
                                     </td>
                                     <td>{{item.get_total|floatformat:2}}</td>
                                 </tr>
