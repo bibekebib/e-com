@@ -60,6 +60,9 @@ body {
   margin: 1rem;
   width: calc(100% / 2 - 2rem);
 }
+.checkout-container .checkout-shipping-address .banner-btn {
+  width: calc(100% - 2rem);
+}
 .checkout-container
   .checkout-shipping-address
   .authorized-shipping-address
@@ -90,7 +93,6 @@ body {
   width: 100px;
   height: 60px;
 }
-text-transform: var(--mainSpacing);
 
 @media only screen and (max-width: 940px) {
   .checkout-container {
@@ -100,4 +102,8 @@ text-transform: var(--mainSpacing);
   .checkout-container .checkout-items-summery {
     width: calc(100% - 40px);
   }
+}
+
+.hidden {
+  display: none;
 }

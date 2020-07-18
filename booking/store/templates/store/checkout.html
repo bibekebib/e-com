@@ -1,68 +1,160 @@
 {% extends 'store/main.html' %}
 {% load static %}
 {% block content %}
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8"/>
-            <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-            <link rel="stylesheet" href="{% static 'css/store.css' %}">
-            <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
-            <title>checkout | MarginTop Solutions</title>
-        </head>
-        <body>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+        <link rel="stylesheet" href="{% static 'css/store.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/checkout.css' %}"/>
+        <title>checkout | MarginTop Solutions</title>
+    </head>
+    <body>
+        <div class="checkout-container" style="margin-top: 100px;">
+            <div class="checkout-shipping-address">
+                <div id="form-wrapper">
+                    <form id="form">
+                        <div class="guest-input-section">
+                            <input id="" name="" placeholder="Name" type="text"/>
+                            <input id="" name="" placeholder="Email" type="text"/>
+                        </div>
+                        <hr/>
+                        <h3>Shipping Address</h3>
+                        <hr/>
+                        <div class="authorized-shipping-address">
+                            <input id="" name="address" placeholder="Address" type="text"/>
+                            <input id="" name="city" placeholder="City" type="text"/>
+                            <input id="" name="state" placeholder="State" type="text"/>
+                            <input id="" name="zipcode" placeholder="zipcode" type="text"/>
 
-            <div class="checkout-container" style="margin-top:100px">
-                <div class="checkout-shipping-address">
-                    <div class="guest-input-section">
-                        <input id="" name="" placeholder="Name" type="text">
-                        <input id="" name="" placeholder="Email" type="text">
-                    </div>
-                    <hr>
-                    <h3>Shipping Address</h3>
-                    <hr>
-                    <div class="authorized-shipping-address">
-                        <input id="" name="" placeholder="Address" type="text">
-                        <input id="" name="" placeholder="City" type="text">
-                        <input id="" name="" placeholder="State" type="text">
-                        <input id="" name="" placeholder="Zip Code" type="text">
-                        <button class="banner-btn" type="submit">Continue</button>
-                    </div>
+                        </div>
+                        <input class="banner-btn" id="form-button" type="submit" value="Continue">
+                    </form>
                 </div>
-                <div class="checkout-items-summery">
-                    <div class="back-link">
-
-                        <a href="{%url 'cart' %}">
-                            <button class="banner-btn">
-                                <i class="fas fa-arrow-left"></i>
-                                Back To Cart</button>
-                        </a>
-
-                    </div>
-                    <hr>
-                    <h2>Order Summery</h2>
-                    <hr>
-                    <div class="items-summery">
-                        <table>
-                            {% for item in items %}
-                                <tr>
-                                    <td><img src="{{item.product.imageURL}}" alt="item.product.name"/></td>
-                                    <td>{{item.product.name}}</td>
-                                    <td>{{item.product.price|floatformat:2}}</td>
-                                    <td>{{item.quantity}}</td>
-                                </tr>
-                            {% endfor %}
-                        </table>
-                    </div>
-                    <hr>
-                    <span style="display: flex; align-items:center; justify-content:space-evenly; margin: 1rem 0;">
-                        <p>items:<strong>{{order.get_cart_items}}</strong>
-                        </p>
-                        <p>Total:<strong>{{order.get_cart_total|floatformat:2}}</strong>
-                        </p>
-                    </span>
+                <br/>
+                <div class="box-element hidden" id="payment-info">
+                    <small>Paypal Options</small>
+                    <button class="banner-btn" id="make-payment">Make payment</button>
                 </div>
             </div>
+            <div class="checkout-items-summery">
+                <div class="back-link">
+                    <a href="{%url 'cart' %}">
+                        <button class="banner-btn">
+                            <i class="fas fa-arrow-left"></i>
+                            Back To Cart
+                        </button>
+                    </a>
+                </div>
+                <hr/>
+                <h2>Order Summery</h2>
+                <hr/>
+                <div class="items-summery">
+                    <table>
+                        {% for item in items %}
+                            <tr>
+                                <td>
+                                    <img src="{{item.product.imageURL}}" alt="item.product.name"/>
+                                </td>
+                                <td>{{item.product.name}}</td>
+                                <td>{{item.product.price|floatformat:2}}</td>
+                                <td>{{item.quantity}}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <hr/>
+                <span style="display: flex; align-items: center; justify-content: space-evenly; margin: 1rem 0;">
+                    <p>
+                        items:
+                        <strong>{{order.get_cart_items}}</strong>
+                    </p>
+                    <p>
+                        Total:
+                        <strong>{{order.get_cart_total|floatformat:2}}</strong>
+                    </p>
+                </span>
+            </div>
+        </div>
+        <script>
+      var shipping = '{{order.shipping}}'
+      var total = '{{order.get_cart_total|floatformat:2}}'
+      if (shipping == 'False') {
+        document.querySelector('.authorized-shipping-address').innerHTML = '';
+      }
+
+      if (user != 'AnonymousUser'){
+          document.querySelector('.guest-input-section').innerHTML = ''
+      }
+
+      if (shipping == 'False' && user != 'AnonymousUser'){
+           //hide entire form if user is logged in and shipping is false
+           document.getElementById('form-wrapper').classList.add('hidden')
+           document.getElementById('payment-info').classList.remove('hidden')
+      }
+		var form = document.getElementById('form')
+		form.addEventListener('submit', (event)=>{
+	    	event.preventDefault()
+	    	console.log('Form Submitted...')
+	    	document.getElementById('form-button').classList.add("hidden");
+	    	document.getElementById('payment-info').classList.remove("hidden");
+        })
+        document.getElementById('make-payment').addEventListener('click', (e)=>{
+           submitFormData()
+       })
+       function submitFormData(){
+        var userFormData = {
+           "name": null,
+           "email": null,
+           "total" : total,
+        }
+        var shippingInfo = {
+           "address":null,
+           "city": null,
+           "state" : null,
+           "zipcode":null,
+         
+       }
+
+
+       if (shipping != 'False'){
+        shippingInfo.address = form.address.value
+        shippingInfo.city = form.city.value
+        shippingInfo.state = form.state.value
+        shippingInfo.zipcode = form.zipcode.value
+    }
+
+       if (user == 'AnonymousUser'){
+        userFormData.name = form.name.value
+        userFormData.email = form.email.value
+    }
+
+       var url = '/process_order/'
+       fetch(url, {
+        method:'POST',
+        headers:{
+            'Content-Type':'applicaiton/json',
+            'X-CSRFToken':csrftoken,
+        }, 
+        body:JSON.stringify({'form':userFormData, 'shipping':shippingInfo}),
+        
+    })
+    .then((response) => response.json())
+    .then((data) => {
+          console.log('Success:', data);
+          alert('Transaction completed');  
+          window.location.href = "{% url 'store' %}"
+
+        })
+       
+   }
+        
+    </script>
         {% endblock content %}
+    </body>
+    </body>
+    </body>
+</html>
     </body>
 </html>
